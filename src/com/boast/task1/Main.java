@@ -1,10 +1,13 @@
+/*
+ * Main.java 22/07/2017
+ *
+ * Created by Bondarenko Oleh
+ */
+
+
 package com.boast.task1;
 
 import java.util.Scanner;
-
-/**
- * Created by Bondarenko Oleh on 22.07.2017.
- */
 
 public class Main {
 
