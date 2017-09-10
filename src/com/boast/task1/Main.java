@@ -7,20 +7,27 @@
 
 package com.boast.task1;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Scanner in = new Scanner(System.in);
-        long maxNumber = in.nextLong();
+        System.out.print("Enter max value to search: ");
 
-        getPerfectNumbers(maxNumber);
-
+        try (Scanner in = new Scanner(System.in)) {
+            long maxNumber = in.nextLong();
+            PerfectNumbers.printTo(maxNumber);
+        } catch (InputMismatchException e){
+            System.out.println("Invalid input");
+        }
     }
+}
 
-    private static void getPerfectNumbers(long maxNumber) {
+class PerfectNumbers{
+    public static void printTo(long maxNumber) {
+        boolean findFlag = false;
 
         for (int p = 1; p < 31; p++) {
             long candidateForPrime = (2 << p) - 1;
@@ -28,8 +35,12 @@ public class Main {
             if (primeTest(candidateForPrime)) {
                 long perfectNumber = candidateForPrime * (2 << (p - 1));
                 if (perfectNumber > maxNumber) {
+                    if (!findFlag) {
+                        System.out.println("Perfect numbers less than entered value does not exist");
+                    }
                     break;
                 }
+                findFlag = true;
                 System.out.println(perfectNumber);
             }
         }
